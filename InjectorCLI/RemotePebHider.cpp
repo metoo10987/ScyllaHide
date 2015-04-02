@@ -179,7 +179,7 @@ void FixHeapFlag(HANDLE hProcess, DWORD_PTR heapBase)
 
 	if (ReadProcessMemory(hProcess, heapFlagsAddress, &heapFlags, sizeof(DWORD), 0))
 	{
-		heapFlags &= HEAP_GROWABLE;
+		heapFlags &= (HEAP_GROWABLE | HEAP_CREATE_ENABLE_EXECUTE);
 		WriteProcessMemory(hProcess, heapFlagsAddress, &heapFlags, sizeof(DWORD), 0);
 	}
 	if (ReadProcessMemory(hProcess, heapForceFlagsAddress, &heapForceFlags, sizeof(DWORD), 0))
